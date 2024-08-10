@@ -7,10 +7,10 @@
     <title>Todo List </title>
     <link rel="stylesheet" href="./todo.css">
 </head>
-<body>
+<body id="body" >
     <!-- section 1 -->
-    <div class="nav">
-        <h1> Todo List </h1>
+    <div class="nav ">
+        <h1 title="My App"  > Todo List </h1>
         <button> Dark Theme </button>
     </div>
     <!-- end of section 1 -->
@@ -23,18 +23,18 @@
     <!-- end of section 2 -->
     <!--  section 3 -->
     <div class="tasks">
-        <h1> Tasks </h1>
+        <h2> Tasks </h2>
         <ol class="ol">
-            <li class="li">
-                <span class="task">Javacript Lectures</span>
+            <li ondblclick="handleClick() " class="li li1">
+                <span class="task ">Javacript Lectures</span>
                 <span class="delete"> Delete</span>
             </li>
-            <li class="li">
-                <span class="task"> Do Assignment</span>
+            <li class="li li2">
+                <span class="task "> Do Assignment</span>
                 <span class="delete"> Delete</span>
             </li>
-            <li class="li">
-                <span class="task">Take W3schools Javascript Tutorial</span>
+            <li class="li li3">
+                <span class="task ">Take W3schools Javascript Tutorial</span>
                 <span class="delete"> Delete</span>
             </li>
         </ol>
@@ -51,11 +51,21 @@
 
  </div>
 
- <div class="diag">
+ <!-- <div class="diag">
     <h4><span class="title">notice</span> <button class="close">X</button></h4> 
     <form class="diagReset">
         <input type="text" disabled class="info">
     </form>
+ </div> -->
+
+ <div class="modal">
+    <div class="msg"> 
+        <p>Do want to Delete this Task?</p>
+    </div>
+    <div class="btns">
+        <button class="no">Cancel</button>
+        <button class="yes">Ok</button>
+    </div>
  </div>
     
 
