@@ -1,4 +1,5 @@
-//? selecting element
+function oldcode() {
+  //? selecting element
 
 // by id
 
@@ -180,16 +181,184 @@ function test() {
 
 // test();
 
-//? dom eveent
+//? dom event\
+
+
+
 
 /* 
+
+types of event
+click
+mouseenter
+mouseleave
+submit
+keyup
+keydown
+dbclick
+scroll
+
   variable.addEventListener('eventType',function);
 */
 
-bodyById.addEventListener('click',(e)=> {
+let newNav = document.querySelector('.nav');
+
+newNav.addEventListener('click',(e)=>{
   console.log(e.target)
 })
 
-li1.addEventListener('mouseleave',(e)=> {
-  alert('Mouse left')
+}
+
+
+//! activate dark mode
+
+/* 
+  > select the required tags
+  > add the required event listener
+  > on click of the button tag:
+    > change the webpage to dark bg and text to white
+    > if the dark mode exist, change btn text to Light Theme else revert
+*/
+
+// select required tags
+let body = document.querySelector('body');
+let themeBtn = document.querySelector('.nav button');
+
+themeBtn.addEventListener('click',(e)=> {
+  body.classList.toggle('darkTheme');
+
+  if(String(body.className).includes('darkTheme')) {
+    themeBtn.textContent = 'Light Theme';
+  }else{
+    themeBtn.textContent = 'Dark Theme';
+
+  }
+})
+// themeBtn.addEventListener('click', function (e) {
+//   body.classList.toggle('darkTheme');
+//   if(String(body.className).includes('darkTheme')) {
+//     themeBtn.textContent = 'Light Theme';
+//   }else{
+//     themeBtn.textContent = 'Dark Theme';
+
+//   }
+// } )
+// themeBtn.addEventListener('click', handleTheme )
+
+// function handleTheme (e) {
+//   body.classList.toggle('darkTheme');
+//   if(String(body.className).includes('darkTheme')) {
+//     themeBtn.textContent = 'Light Theme';
+//   }else{
+//     themeBtn.textContent = 'Dark Theme';
+
+//   }
+// }
+
+// (), {}, []
+// functionName(parem)
+
+//! activate search
+
+/* 
+  > selecte required tags
+  > add require event listener
+  > get the typed input text in real time
+  > get the tasks text
+  > convert input text and tasks text to lower or upper case
+  > compare the typed input with the tasks text
+  > if there is a match, show the tasks having the typed text else hide
+   
+*/
+
+let searchInput = document.querySelector('.search input');
+
+let allTasks = document.querySelectorAll('.tasks li');
+
+
+searchInput.addEventListener('keyup',(e)=> {
+  let lowerInputText = String(searchInput.value).toLowerCase();
+
+  allTasks.forEach(li=> {
+   let  lowerTasksText = String(li.firstElementChild.textContent).toLowerCase() 
+      if(lowerTasksText.includes(lowerInputText)) {
+        li.style.display = 'flex';
+      }else{
+        li.style.display = 'none';
+
+      }
+  })
+})
+
+
+//! delete task
+
+/* 
+  steps to develop algorithm
+  > understand the problem
+  > write the the psuedocode algorithm or the local steps
+  > convert to a script language
+  > test the code and handle possible errors or exceptions
+*/
+
+/* 
+ > select the required tags
+ > add event lister to the tasks parent
+ > onlick of the delete btn, delete the task for that btn
+*/
+
+let taskOl = document.querySelector('.tasks ol');
+
+taskOl.addEventListener('click',(e)=> {
+  if(String(e.target.className).includes('delete')) {
+    let askUser = confirm('Are You Sure you want to Delete this tAsk?');
+    if(askUser) {
+      e.target.parentElement.style.display='none'
+    }
+  }
+})
+
+//! activate add tasks
+
+/* 
+  > select add task form and the inpute
+  > add event lister to the form
+  > on form submit: 
+   > get the typed input
+   > create task li
+   > append to task ol
+   > reset form
+*/
+
+let addTaskForm = document.querySelector('.addTask');
+let addTaskInput = addTaskForm.firstElementChild;
+let liCount = 3;
+
+addTaskForm.addEventListener('submit',(e)=> {
+  e.preventDefault();
+  // create element
+  let li = document.createElement('li');
+  let taskSpan = document.createElement('span');
+  let deleteSpan = document.createElement('span');
+  // add attribute
+  li.setAttribute('class',`li li${liCount +=1}`);
+  taskSpan.setAttribute('class', 'task')
+  deleteSpan.setAttribute('class', 'delete');
+
+  // add text
+  taskSpan.textContent = addTaskInput.value;
+  deleteSpan.textContent = 'Delete';
+
+  // rearragne
+  li.append(taskSpan);
+  li.append(deleteSpan);
+   if(String(addTaskInput.value).length > 2) {
+     // add to dom
+     taskOl.append(li);
+     // reset form
+     addTaskForm.reset();
+
+   }else{
+    alert('Task is not Meaningfull!!!!')
+   }
 })
